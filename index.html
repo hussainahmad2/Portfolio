@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hussain Ahmad Bilal - Senior Mobile & Full Stack Engineer</title>
+    <meta name="description" content="Senior Software Engineer specializing in React Native, Flutter, and MERN Stack. Expert in cloud-native architectures, microservices, and AI/ML integration.">
+    <meta name="keywords" content="React Native, Flutter, TypeScript, Kubernetes, AWS, Mobile Development, Full Stack Developer">
+    
+    <!-- Open Graph / Social Media Meta Tags -->
+    <meta property="og:title" content="Hussain Ahmad Bilal - Senior Mobile & Full Stack Engineer">
+    <meta property="og:description" content="Building next-generation mobile and web applications with cutting-edge technologies">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://hussainahmadbilal.com">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="favicon.png">
+    
+    <!-- External CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="loader">
+            <div class="loader-dot"></div>
+            <div class="loader-dot"></div>
+            <div class="loader-dot"></div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav id="navbar" class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <span class="logo-text">HAB</span>
+                <span class="logo-subtitle">Engineer</span>
+            </div>
+            
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home" class="nav-link active">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#skills" class="nav-link">Skills</a></li>
+                <li><a href="#experience" class="nav-link">Experience</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#services" class="nav-link">Services</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            
+            <div class="nav-actions">
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                    <i class="fas fa-moon" id="themeIcon"></i>
+                </button>
+                <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-header">
+            <div class="logo">HAB</div>
+            <button class="close-menu" id="closeMenu">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <ul class="mobile-nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <div class="hero-background">
+                <div class="animated-bg"></div>
+                <canvas id="particleCanvas"></canvas>
+            </div>
+            
+            <div class="hero-content">
+                <div class="hero-text">
+                    <div class="hero-badge">
+                        <i class="fas fa-circle pulse"></i>
+                        Available for new opportunities
+                    </div>
+                    
+                    <h1 class="hero-title">
+                        Hi, I'm <span class="gradient-text">Hussain Ahmad Bilal</span>
+                    </h1>
+                    
+                    <div class="hero-subtitle">
+                        <span class="text-slider">
+                            <span class="text-slider-items">
+                                Senior Mobile Engineer,
+                                React Native Expert,
+                                Flutter Developer,
+                                Cloud Architect,
+                                AI/ML Engineer,
+                                Full Stack Developer
+                            </span>
+                        </span>
+                    </div>
+                    
+                    <p class="hero-description">
+                        Senior Software Engineer with 5+ years building scalable mobile and web applications. 
+                        Specializing in React Native, Flutter, and cloud-native architectures. 
+                        Currently pursuing advanced studies at Foundation University while delivering enterprise solutions.
+                    </p>
+                    
+                    <div class="hero-buttons">
+                        <a href="#contact" class="btn btn-primary">
+                            <i class="fas fa-rocket"></i>
+                            Let's Build Something
+                        </a>
+                        <a href="#projects" class="btn btn-secondary">
+                            <i class="fas fa-code"></i>
+                            View My Work
+                        </a>
+                    </div>
+                    
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <div class="stat-number" data-count="5">0</div>
+                            <div class="stat-label">Years Experience</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number" data-count="150">0</div>
+                            <div class="stat-label">Projects Delivered</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number" data-count="50">0</div>
+                            <div class="stat-label">Happy Clients</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number" data-count="15">0</div>
+                            <div class="stat-label">Awards Won</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="hero-visual">
+                    <div class="hero-image-container">
+                        <div class="tech-orbit">
+                            <div class="orbit-item" style="--i: 1"><i class="fab fa-react"></i></div>
+                            <div class="orbit-item" style="--i: 2"><i class="fab fa-node-js"></i></div>
+                            <div class="orbit-item" style="--i: 3"><i class="fab fa-aws"></i></div>
+                            <div class="orbit-item" style="--i: 4"><i class="fab fa-docker"></i></div>
+                            <div class="orbit-item" style="--i: 5"><i class="fab fa-python"></i></div>
+                            <div class="orbit-item" style="--i: 6"><i class="fas fa-mobile-alt"></i></div>
+                        </div>
+                        <div class="hero-avatar">
+                            <div class="avatar-glow"></div>
+                            <img src="images/avatar.jpg" alt="Hussain Ahmad Bilal" onerror="this.style.display='none'">
+                            <div class="avatar-placeholder">
+                                <i class="fas fa-user"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="scroll-indicator">
+                <div class="mouse">
+                    <div class="wheel"></div>
+                </div>
+                <span>Scroll to explore</span>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="section about-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">About Me</h2>
+                    <p class="section-subtitle">Passionate about building exceptional digital experiences</p>
+                </div>
+                
+                <div class="about-content">
+                    <div class="about-image">
+                        <div class="code-editor">
+                            <div class="code-header">
+                                <div class="dots">
+                                    <span class="dot red"></span>
+                                    <span class="dot yellow"></span>
+                                    <span class="dot green"></span>
+                                </div>
+                                <span class="file-name">developer.ts</span>
+                            </div>
+                            <pre class="code-content"><code><span class="keyword">interface</span> <span class="class">Developer</span> {
+  <span class="property">name</span>: <span class="type">string</span>;
+  <span class="property">role</span>: <span class="type">string</span>;
+  <span class="property">experience</span>: <span class="type">number</span>;
+  <span class="property">skills</span>: <span class="type">string[]</span>;
+  <span class="property">passion</span>: <span class="type">string</span>;
+}
+
+<span class="keyword">const</span> <span class="variable">hussain</span>: <span class="class">Developer</span> = {
+  <span class="property">name</span>: <span class="string">"Hussain Ahmad Bilal"</span>,
+  <span class="property">role</span>: <span class="string">"Senior Software Engineer"</span>,
+  <span class="property">experience</span>: <span class="number">5</span>,
+  <span class="property">skills</span>: [
+    <span class="string">"React Native"</span>,
+    <span class="string">"Flutter"</span>,
+    <span class="string">"TypeScript"</span>,
+    <span class="string">"Cloud Architecture"</span>
+  ],
+  <span class="property">passion</span>: <span class="string">"Innovation"</span>
+};</code></pre>
+                        </div>
+                    </div>
+                    
+                    <div class="about-text">
+                        <h3>Engineering Excellence & Innovation</h3>
+                        <p class="lead">
+                            I'm a Senior Software Engineer with over 5 years of experience building cutting-edge mobile and web applications. 
+                            Currently pursuing my Engineering Technology degree at Foundation University, Rawalpindi (2022-2026), 
+                            I combine academic excellence with real-world expertise.
+                        </p>
+                        
+                        <p>
+                            My journey has been marked by significant achievements, including developing Foundation University's 
+                            groundbreaking Outcome-Based Education (OBE) system and leading teams at top tech companies. 
+                            I specialize in React Native, Flutter, and cloud-native architectures, with a strong focus on 
+                            performance optimization and scalable solutions.
+                        </p>
+                        
+                        <div class="about-highlights">
+                            <div class="highlight-item">
+                                <i class="fas fa-graduation-cap"></i>
+                                <div>
+                                    <h4>Education</h4>
+                                    <p>Engineering Technology, Foundation University (2022-2026)</p>
+                                </div>
+                            </div>
+                            <div class="highlight-item">
+                                <i class="fas fa-briefcase"></i>
+                                <div>
+                                    <h4>Current Role</h4>
+                                    <p>Senior Mobile Engineer & Technical Lead</p>
+                                </div>
+                            </div>
+                            <div class="highlight-item">
+                                <i class="fas fa-trophy"></i>
+                                <div>
+                                    <h4>Achievement</h4>
+                                    <p>Developed University's First OBE System</p>
+                                </div>
+                            </div>
+                            <div class="highlight-item">
+                                <i class="fas fa-users"></i>
+                                <div>
+                                    <h4>Leadership</h4>
+                                    <p>Led 20+ Developer Teams</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="about-cta">
+                            <a href="#contact" class="btn btn-primary">
+                                <i class="fas fa-comments"></i>
+                                Let's Talk
+                            </a>
+                            <a href="#projects" class="btn btn-outline">
+                                <i class="fas fa-folder-open"></i>
+                                View Portfolio
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="section skills-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Technical Expertise</h2>
+                    <p class="section-subtitle">Mastery of cutting-edge technologies and frameworks</p>
+                </div>
+                
+                <div class="skills-container" id="skillsContainer">
+                    <!-- Skills will be dynamically loaded here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section id="experience" class="section experience-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Professional Journey</h2>
+                    <p class="section-subtitle">Building innovative solutions at leading tech companies</p>
+                </div>
+                
+                <div class="timeline" id="experienceTimeline">
+                    <!-- Experience items will be dynamically loaded here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="section projects-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Featured Projects</h2>
+                    <p class="section-subtitle">Showcasing innovation across mobile, web, and cloud platforms</p>
+                </div>
+                
+                <div class="project-filters">
+                    <button class="filter-btn active" data-filter="all">All Projects</button>
+                    <button class="filter-btn" data-filter="mobile">Mobile Apps</button>
+                    <button class="filter-btn" data-filter="web">Web Apps</button>
+                    <button class="filter-btn" data-filter="ai">AI/ML</button>
+                    <button class="filter-btn" data-filter="blockchain">Blockchain</button>
+                    <button class="filter-btn" data-filter="cloud">Cloud/DevOps</button>
+                </div>
+                
+                <div class="projects-grid" id="projectsGrid">
+                    <!-- Projects will be dynamically loaded here -->
+                </div>
+                
+                <div class="load-more-container">
+                    <button class="btn btn-outline" id="loadMoreProjects">
+                        <i class="fas fa-plus"></i>
+                        Load More Projects
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="section services-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Services & Expertise</h2>
+                    <p class="section-subtitle">Comprehensive solutions for modern businesses</p>
+                </div>
+                
+                <div class="services-grid" id="servicesGrid">
+                    <!-- Services will be dynamically loaded here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="section contact-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Let's Connect</h2>
+                    <p class="section-subtitle">Ready to build something amazing together?</p>
+                </div>
+                
+                <div class="contact-container">
+                    <div class="contact-info">
+                        <h3>Get in Touch</h3>
+                        <p>I'm always excited to work on new challenges and innovative projects. Whether you need a mobile app, web platform, or technical consultation, let's discuss how we can work together.</p>
+                        
+                        <div class="contact-items">
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div class="contact-details">
+                                    <h4>Email</h4>
+                                    <a href="mailto:hussainahmadbilal@gmail.com">hussainahmadbilal@gmail.com</a>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-phone"></i>
+                                </div>
+                                <div class="contact-details">
+                                    <h4>Phone</h4>
+                                    <a href="tel:+923243439430">+92 324 3439430</a>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div class="contact-details">
+                                    <h4>Location</h4>
+                                    <span>Rawalpindi, Pakistan</span>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="fab fa-linkedin"></i>
+                                </div>
+                                <div class="contact-details">
+                                    <h4>LinkedIn</h4>
+                                    <a href="https://www.linkedin.com/in/hussainahmadbilal/" target="_blank">Connect on LinkedIn</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="social-links">
+                            <a href="https://github.com/hussainahmad2" target="_blank" class="social-link">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="https://www.linkedin.com/in/hussainahmadbilal/" target="_blank" class="social-link">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                            <a href="https://twitter.com/hussainahmadb" target="_blank" class="social-link">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="https://stackoverflow.com/users/hussainahmadbilal" target="_blank" class="social-link">
+                                <i class="fab fa-stack-overflow"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-form-container">
+                        <form id="contactForm" class="contact-form">
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="name" name="name" placeholder="Your Name" required>
+                                <label for="name">Your Name</label>
+                            </div>
+                            
+                            <div class="form-group">
+                                <input type="email" class="form-control" id="email" name="email" placeholder="Your Email" required>
+                                <label for="email">Your Email</label>
+                            </div>
+                            
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="subject" name="subject" placeholder="Subject" required>
+                                <label for="subject">Subject</label>
+                            </div>
+                            
+                            <div class="form-group">
+                                <textarea class="form-control" id="message" name="message" rows="5" placeholder="Your Message" required></textarea>
+                                <label for="message">Your Message</label>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary btn-block">
+                                <i class="fas fa-paper-plane"></i>
+                                Send Message
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Hussain Ahmad Bilal</h3>
+                    <p>Senior Software Engineer passionate about building innovative solutions that make a difference.</p>
+                    <div class="footer-social">
+                        <a href="https://github.com/hussainahmad2" target="_blank"><i class="fab fa-github"></i></a>
+                        <a href="https://www.linkedin.com/in/hussainahmadbilal/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://twitter.com/hussainahmadb" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a href="mailto:hussainahmadbilal@gmail.com"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#skills">Skills</a></li>
+                        <li><a href="#projects">Projects</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Mobile Development</a></li>
+                        <li><a href="#">Web Development</a></li>
+                        <li><a href="#">Cloud Architecture</a></li>
+                        <li><a href="#">Technical Consulting</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Get in Touch</h4>
+                    <p><i class="fas fa-envelope"></i> hussainahmadbilal@gmail.com</p>
+                    <p><i class="fas fa-phone"></i> +92 324 3439430</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Rawalpindi, Pakistan</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Hussain Ahmad Bilal. All rights reserved. | Built with <i class="fas fa-heart"></i> and modern tech</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top -->
+    <button class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Toast Container -->
+    <div id="toastContainer" class="toast-container"></div>
+
+    <!-- Scripts -->
+    <script src="js/data.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/animations.js"></script>
+    <script src="js/contact.js"></script>
+</body>
+</html>
