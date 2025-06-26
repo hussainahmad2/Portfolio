@@ -1637,6 +1637,17 @@ textarea.form-control {
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: opacity 0.3s ease;
+}
+
+/* Fallback: Hide preloader after 3 seconds */
+#preloader {
+    animation: hidePreloader 3s forwards;
+}
+
+@keyframes hidePreloader {
+    0%, 90% { opacity: 1; visibility: visible; }
+    100% { opacity: 0; visibility: hidden; pointer-events: none; }
 }
 
 .loader {

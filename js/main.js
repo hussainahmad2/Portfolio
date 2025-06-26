@@ -14,11 +14,18 @@ const preloader = document.getElementById('preloader');
 document.addEventListener('DOMContentLoaded', () => {
     initializeTheme();
     initializeNavigation();
+    
+    // Check if portfolioData is available
+    if (typeof window.portfolioData !== 'undefined') {
+        loadSkills();
+        loadExperience();
+        loadProjects();
+        loadServices();
+    } else {
+        console.error('Portfolio data not loaded. Check if data.js is included before main.js');
+    }
+    
     initializeAnimations();
-    loadSkills();
-    loadExperience();
-    loadProjects();
-    loadServices();
     initializeParticles();
     initializeCounters();
     hidePreloader();
@@ -26,12 +33,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Hide Preloader
 function hidePreloader() {
-    setTimeout(() => {
-        preloader.style.opacity = '0';
+    const preloader = document.getElementById('preloader');
+    if (preloader) {
         setTimeout(() => {
-            preloader.style.display = 'none';
-        }, 300);
-    }, 1000);
+            preloader.style.opacity = '0';
+            setTimeout(() => {
+                preloader.style.display = 'none';
+            }, 300);
+        }, 1000);
+    }
 }
 
 // Theme Management
