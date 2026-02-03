@@ -211,8 +211,8 @@ function loadExperience() {
 }
 
 // Load Projects
-let currentProjectIndex = 9;
-const projectsPerLoad = 9;
+let currentProjectIndex = 4;
+const projectsPerLoad = 4;
 
 function loadProjects(filter = 'all') {
     const projectsGrid = document.getElementById('projectsGrid');
@@ -228,7 +228,10 @@ function loadProjects(filter = 'all') {
     const projectsHTML = projectsToShow.map(project => `
         <div class="project-card fade-in" data-category="${project.category}">
             <div class="project-image">
-                <i class="${project.image}"></i>
+                <img src="${project.image}" alt="${project.title}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                <div style="display:none;align-items:center;justify-content:center;height:100%;color:var(--text-secondary);">
+                    <i class="fas fa-image" style="font-size:3rem;"></i>
+                </div>
                 <div class="project-badges">
                     ${project.metrics.rating ? `<span class="project-badge">${project.metrics.rating} ★</span>` : ''}
                     ${project.metrics.users ? `<span class="project-badge">${project.metrics.users}</span>` : ''}
@@ -236,8 +239,6 @@ function loadProjects(filter = 'all') {
                 <div class="project-overlay">
                     ${project.links.demo ? `<a href="${project.links.demo}" class="project-link" target="_blank"><i class="fas fa-eye"></i></a>` : ''}
                     ${project.links.github ? `<a href="${project.links.github}" class="project-link" target="_blank"><i class="fab fa-github"></i></a>` : ''}
-                    ${project.links.appStore ? `<a href="${project.links.appStore}" class="project-link" target="_blank"><i class="fab fa-app-store"></i></a>` : ''}
-                    ${project.links.playStore ? `<a href="${project.links.playStore}" class="project-link" target="_blank"><i class="fab fa-google-play"></i></a>` : ''}
                 </div>
             </div>
             <div class="project-content">
