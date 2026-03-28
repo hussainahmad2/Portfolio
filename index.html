@@ -102,25 +102,24 @@
                     </div>
                     
                     <h1 class="hero-title">
-                        Hi, I'm <span class="gradient-text">Hussain Ahmad Bilal</span>
+                        Building <span class="gradient-text">Scalable Solutions</span> with Technical Excellence
                     </h1>
                     
                     <div class="hero-subtitle">
                         <span class="text-slider">
                             <span class="text-slider-items">
-                                Full Stack Developer,
-                                AWS Cloud Engineer,
-                                React Specialist,
-                                Node.js Developer,
-                                Python Developer,
-                                Cloud Solutions Architect
+                                Senior Software Engineer,
+                                Full Stack Specialist,
+                                Cloud Architect,
+                                Mobile Apps Expert,
+                                Healthcare Tech Innovator,
+                                Solutions Architect
                             </span>
                         </span>
                     </div>
                     
                     <p class="hero-description">
-                        Full Stack Software Engineer at Revive Medical Technologies with expertise in React, Node.js, Python, Flutter, and AWS services.
-                        Building innovative web applications, mobile apps, and medical technology solutions that make a difference in healthcare.
+                        Dedicated Software Engineer at Revive Medical Technologies, specialized in architecting high-performance web and mobile applications for the healthcare sector. Committed to professional excellence and delivering innovative solutions.
                     </p>
                     
                     <div class="hero-buttons">
@@ -144,7 +143,7 @@
                             <div class="stat-label">Years Experience</div>
                         </div>
                         <div class="stat-item">
-                            <div class="stat-number" data-co20unt="4">0</div>
+                            <div class="stat-number" data-count="4">0</div>
                             <div class="stat-label">Projects Delivered</div>
                         </div>
                         <div class="stat-item">
@@ -508,10 +507,59 @@
         </div>
     </footer>
 
-    <!-- Back to Top -->
-    <button class="back-to-top" id="backToTop">
-        <i class="fas fa-arrow-up"></i>
-    </button>
+    <!-- Project Preview Modal -->
+    <div id="projectModal" class="project-modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-container">
+            <button class="modal-close" id="closeModal">
+                <i class="fas fa-times"></i>
+            </button>
+            
+            <div class="modal-content">
+                <div class="modal-gallery">
+                    <div class="main-image-container">
+                        <img id="modalMainImage" src="" alt="Project Preview">
+                        <button class="nav-prev"><i class="fas fa-chevron-left"></i></button>
+                        <button class="nav-next"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                    <div class="thumbnail-strip" id="modalThumbnails">
+                        <!-- Thumbnails will be injected here -->
+                    </div>
+                </div>
+                
+                <div class="modal-details">
+                    <div class="modal-header">
+                        <h2 id="modalTitle">Project Title</h2>
+                        <span id="modalCategory" class="project-badge">Category</span>
+                    </div>
+                    
+                    <p id="modalDescription">Project description goes here...</p>
+                    
+                    <div class="modal-info-grid">
+                        <div class="info-item">
+                            <h4>Technologies</h4>
+                            <div id="modalTech" class="project-tech"></div>
+                        </div>
+                        <div class="info-item">
+                            <h4>Key Features</h4>
+                            <ul id="modalFeatures" class="modal-list"></ul>
+                        </div>
+                    </div>
+                    
+                    <div id="modalMetrics" class="project-metrics"></div>
+                    
+                    <div class="modal-actions">
+                        <a href="#" id="modalDemoLink" class="btn btn-primary" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> Live Demo
+                        </a>
+                        <a href="#" id="modalGithubLink" class="btn btn-outline" target="_blank">
+                            <i class="fab fa-github"></i> Source Code
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Toast Container -->
     <div id="toastContainer" class="toast-container"></div>

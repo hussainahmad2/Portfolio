@@ -7,8 +7,26 @@ const mobileMenu = document.getElementById('mobileMenu');
 const closeMenu = document.getElementById('closeMenu');
 const themeToggle = document.getElementById('themeToggle');
 const themeIcon = document.getElementById('themeIcon');
-const backToTop = document.getElementById('backToTop');
 const preloader = document.getElementById('preloader');
+
+// Modal Elements
+const projectModal = document.getElementById('projectModal');
+const closeModal = document.getElementById('closeModal');
+const modalMainImage = document.getElementById('modalMainImage');
+const modalThumbnails = document.getElementById('modalThumbnails');
+const modalTitle = document.getElementById('modalTitle');
+const modalCategory = document.getElementById('modalCategory');
+const modalDescription = document.getElementById('modalDescription');
+const modalTech = document.getElementById('modalTech');
+const modalFeatures = document.getElementById('modalFeatures');
+const modalMetrics = document.getElementById('modalMetrics');
+const modalDemoLink = document.getElementById('modalDemoLink');
+const modalGithubLink = document.getElementById('modalGithubLink');
+const navPrev = document.querySelector('.nav-prev');
+const navNext = document.querySelector('.nav-next');
+
+let currentProjectImages = [];
+let currentImageIndex = 0;
 
 // Initialize
 document.addEventListener('DOMContentLoaded', () => {
@@ -28,6 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initializeAnimations();
     initializeParticles();
     initializeCounters();
+    initializeModal();
     hidePreloader();
 });
 
@@ -97,19 +116,10 @@ function closeMobileMenu() {
 
 function handleScroll() {
     const scrollY = window.scrollY;
-    
-    // Navbar background
     if (scrollY > 50) {
         navbar.classList.add('scrolled');
     } else {
         navbar.classList.remove('scrolled');
-    }
-    
-    // Back to top button
-    if (scrollY > 300) {
-        backToTop.classList.add('visible');
-    } else {
-        backToTop.classList.remove('visible');
     }
 }
 
@@ -169,8 +179,8 @@ function loadSkills() {
             <div class="skill-items">
                 ${category.skills.map(skill => `
                     <div class="skill-item">
+                        <i class="${getSkillIcon(skill.name)}"></i>
                         <span>${skill.name}</span>
-                        <span class="skill-level">${skill.level}</span>
                     </div>
                 `).join('')}
             </div>
@@ -178,6 +188,28 @@ function loadSkills() {
     `).join('');
     
     skillsContainer.innerHTML = skillsHTML;
+}
+
+function getSkillIcon(name) {
+    const icons = {
+        'React': 'fab fa-react',
+        'React Native': 'fab fa-react',
+        'Flutter': 'fas fa-mobile-alt',
+        'Node.js': 'fab fa-node-js',
+        'JavaScript/ES6+': 'fab fa-js',
+        'TypeScript': 'fas fa-code',
+        'Python': 'fab fa-python',
+        'AWS EC2': 'fab fa-aws',
+        'AWS S3': 'fab fa-aws',
+        'PostgreSQL': 'fas fa-database',
+        'MongoDB': 'fas fa-leaf',
+        'MySQL': 'fas fa-database',
+        'HTML5/CSS3': 'fab fa-html5',
+        'Git/GitHub': 'fab fa-github',
+        'C++': 'fas fa-code',
+        'Kotlin': 'fas fa-mobile-alt'
+    };
+    return icons[name] || 'fas fa-check-circle';
 }
 
 // Load Experience
@@ -199,7 +231,7 @@ function loadExperience() {
                     `).join('')}
                 </ul>
                 <div class="timeline-tech">
-                    ${exp.technologies.map(tech => `
+                    ${exp.technologies.slice(0, 5).map(tech => `
                         <span class="tech-tag">${tech}</span>
                     `).join('')}
                 </div>
@@ -226,50 +258,121 @@ function loadProjects(filter = 'all') {
     const projectsToShow = filteredProjects.slice(0, currentProjectIndex);
     
     const projectsHTML = projectsToShow.map(project => `
-        <div class="project-card fade-in" data-category="${project.category}">
+        <div class="project-card fade-in" onclick="openProjectDetails(${project.id})">
             <div class="project-image">
                 <img src="${project.image}" alt="${project.title}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
                 <div style="display:none;align-items:center;justify-content:center;height:100%;color:var(--text-secondary);">
                     <i class="fas fa-image" style="font-size:3rem;"></i>
                 </div>
-                <div class="project-badges">
-                    ${project.metrics.rating ? `<span class="project-badge">${project.metrics.rating} ★</span>` : ''}
-                    ${project.metrics.users ? `<span class="project-badge">${project.metrics.users}</span>` : ''}
-                </div>
                 <div class="project-overlay">
-                    ${project.links.demo ? `<a href="${project.links.demo}" class="project-link" target="_blank"><i class="fas fa-eye"></i></a>` : ''}
-                    ${project.links.github ? `<a href="${project.links.github}" class="project-link" target="_blank"><i class="fab fa-github"></i></a>` : ''}
+                    <div class="project-link"><i class="fas fa-eye"></i></div>
                 </div>
             </div>
             <div class="project-content">
                 <h3>${project.title}</h3>
-                <p>${project.description}</p>
+                <p>${project.description.length > 100 ? project.description.substring(0, 100) + '...' : project.description}</p>
                 <div class="project-tech">
-                    ${project.technologies.map(tech => `
+                    ${project.technologies.slice(0, 3).map(tech => `
                         <span class="tech-tag">${tech}</span>
                     `).join('')}
                 </div>
-                ${project.metrics ? `
-                    <div class="project-metrics">
-                        ${Object.entries(project.metrics).slice(0, 3).map(([key, value]) => `
-                            <div class="metric">
-                                <i class="fas fa-chart-line"></i>
-                                <span>${value}</span>
-                            </div>
-                        `).join('')}
-                    </div>
-                ` : ''}
             </div>
         </div>
     `).join('');
     
     projectsGrid.innerHTML = projectsHTML;
     
-    // Update load more button visibility
     const loadMoreBtn = document.getElementById('loadMoreProjects');
     if (loadMoreBtn) {
         loadMoreBtn.style.display = currentProjectIndex >= filteredProjects.length ? 'none' : 'inline-flex';
     }
+}
+
+// Modal Logic
+function initializeModal() {
+    closeModal.addEventListener('click', closeProjectModal);
+    projectModal.querySelector('.modal-overlay').addEventListener('click', closeProjectModal);
+    
+    navPrev.addEventListener('click', (e) => {
+        e.stopPropagation();
+        navigateImage(-1);
+    });
+    
+    navNext.addEventListener('click', (e) => {
+        e.stopPropagation();
+        navigateImage(1);
+    });
+    
+    document.addEventListener('keydown', (e) => {
+        if (!projectModal.classList.contains('active')) return;
+        if (e.key === 'Escape') closeProjectModal();
+        if (e.key === 'ArrowLeft') navigateImage(-1);
+        if (e.key === 'ArrowRight') navigateImage(1);
+    });
+}
+
+window.openProjectDetails = function(projectId) {
+    const project = portfolioData.projects.find(p => p.id === projectId);
+    if (!project) return;
+    
+    modalTitle.textContent = project.title;
+    modalCategory.textContent = project.category;
+    modalDescription.textContent = project.description;
+    
+    // Tech tags
+    modalTech.innerHTML = project.technologies.map(tech => `<span class="tech-tag">${tech}</span>`).join('');
+    
+    // Features list
+    modalFeatures.innerHTML = project.features.map(feat => `<li>${feat}</li>`).join('');
+    
+    // Metrics
+    modalMetrics.innerHTML = Object.entries(project.metrics).map(([key, value]) => `
+        <div class="metric">
+            <i class="fas fa-chart-line"></i>
+            <strong>${key}:</strong> ${value}
+        </div>
+    `).join('');
+    
+    // Links
+    modalDemoLink.href = project.links.demo || '#';
+    modalDemoLink.style.display = project.links.demo && project.links.demo !== '#' ? 'inline-flex' : 'none';
+    modalGithubLink.href = project.links.github || '#';
+    modalGithubLink.style.display = project.links.github && project.links.github !== '#' ? 'inline-flex' : 'none';
+    
+    // Gallery
+    currentProjectImages = project.images || [project.image];
+    currentImageIndex = 0;
+    updateModalImage();
+    
+    // Thumbnails
+    modalThumbnails.innerHTML = currentProjectImages.map((img, idx) => `
+        <img src="${img}" class="${idx === 0 ? 'active' : ''}" onclick="setModalImage(${idx})" alt="Thumb">
+    `).join('');
+    
+    projectModal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+};
+
+function closeProjectModal() {
+    projectModal.classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+function navigateImage(direction) {
+    currentImageIndex = (currentImageIndex + direction + currentProjectImages.length) % currentProjectImages.length;
+    updateModalImage();
+}
+
+window.setModalImage = function(index) {
+    currentImageIndex = index;
+    updateModalImage();
+};
+
+function updateModalImage() {
+    modalMainImage.src = currentProjectImages[currentImageIndex];
+    document.querySelectorAll('.thumbnail-strip img').forEach((img, idx) => {
+        img.classList.toggle('active', idx === currentImageIndex);
+    });
 }
 
 // Project Filters
@@ -277,9 +380,8 @@ document.querySelectorAll('.filter-btn').forEach(btn => {
     btn.addEventListener('click', function() {
         document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
         this.classList.add('active');
-        
         const filter = this.getAttribute('data-filter');
-        currentProjectIndex = 9; // Reset to initial load
+        currentProjectIndex = 4;
         loadProjects(filter);
     });
 });
@@ -334,7 +436,6 @@ function initializeAnimations() {
         });
     }, observerOptions);
     
-    // Observe all fade-in elements
     document.querySelectorAll('.fade-in').forEach(el => {
         el.style.opacity = '0';
         el.style.transform = 'translateY(20px)';
@@ -347,15 +448,12 @@ function initializeAnimations() {
 function initializeParticles() {
     const canvas = document.getElementById('particleCanvas');
     if (!canvas) return;
-    
     const ctx = canvas.getContext('2d');
     let particles = [];
-    
     function resizeCanvas() {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
     }
-    
     function createParticle() {
         return {
             x: Math.random() * canvas.width,
@@ -366,71 +464,48 @@ function initializeParticles() {
             opacity: Math.random() * 0.5 + 0.2
         };
     }
-    
     function initParticles() {
         particles = [];
         const particleCount = Math.floor((canvas.width * canvas.height) / 15000);
-        for (let i = 0; i < particleCount; i++) {
-            particles.push(createParticle());
-        }
+        for (let i = 0; i < particleCount; i++) particles.push(createParticle());
     }
-    
     function drawParticles() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        
         particles.forEach((particle, index) => {
             ctx.beginPath();
             ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
             ctx.fillStyle = `rgba(99, 102, 241, ${particle.opacity})`;
             ctx.fill();
-            
-            // Update position
             particle.x += particle.speedX;
             particle.y += particle.speedY;
-            
-            // Wrap around edges
             if (particle.x < 0) particle.x = canvas.width;
             if (particle.x > canvas.width) particle.x = 0;
             if (particle.y < 0) particle.y = canvas.height;
             if (particle.y > canvas.height) particle.y = 0;
-            
-            // Connect nearby particles
-            particles.slice(index + 1).forEach(otherParticle => {
-                const dx = particle.x - otherParticle.x;
-                const dy = particle.y - otherParticle.y;
-                const distance = Math.sqrt(dx * dx + dy * dy);
-                
-                if (distance < 100) {
+            particles.slice(index + 1).forEach(other => {
+                const dx = particle.x - other.x;
+                const dy = particle.y - other.y;
+                const d = Math.sqrt(dx * dx + dy * dy);
+                if (d < 100) {
                     ctx.beginPath();
                     ctx.moveTo(particle.x, particle.y);
-                    ctx.lineTo(otherParticle.x, otherParticle.y);
-                    ctx.strokeStyle = `rgba(99, 102, 241, ${0.1 * (1 - distance / 100)})`;
+                    ctx.lineTo(other.x, other.y);
+                    ctx.strokeStyle = `rgba(99, 102, 241, ${0.1 * (1 - d / 100)})`;
                     ctx.stroke();
                 }
             });
         });
-        
         requestAnimationFrame(drawParticles);
     }
-    
     resizeCanvas();
     initParticles();
     drawParticles();
-    
-    window.addEventListener('resize', () => {
-        resizeCanvas();
-        initParticles();
-    });
+    window.addEventListener('resize', () => { resizeCanvas(); initParticles(); });
 }
 
 // Initialize Counter Animation
 function initializeCounters() {
     const counters = document.querySelectorAll('.stat-number');
-    
-    const observerOptions = {
-        threshold: 0.5
-    };
-    
     const observer = new IntersectionObserver(entries => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -438,40 +513,27 @@ function initializeCounters() {
                 const target = parseInt(counter.getAttribute('data-count'));
                 let count = 0;
                 const increment = target / 50;
-                
-                const updateCounter = () => {
+                const update = () => {
                     count += increment;
                     if (count < target) {
                         counter.textContent = Math.ceil(count) + '+';
-                        requestAnimationFrame(updateCounter);
-                    } else {
-                        counter.textContent = target + '+';
-                    }
+                        requestAnimationFrame(update);
+                    } else counter.textContent = target + '+';
                 };
-                
-                updateCounter();
+                update();
                 observer.unobserve(counter);
             }
         });
-    }, observerOptions);
-    
-    counters.forEach(counter => observer.observe(counter));
+    }, { threshold: 0.5 });
+    counters.forEach(c => observer.observe(c));
 }
 
-// Utility function for showing toast notifications
-function showToast(message, type = 'success') {
-    const toastContainer = document.getElementById('toastContainer');
-    const toast = document.createElement('div');
-    toast.className = `toast ${type}`;
-    toast.innerHTML = `
-        <i class="toast-icon fas fa-${type === 'success' ? 'check-circle' : 'exclamation-circle'}"></i>
-        <span>${message}</span>
-    `;
-    
-    toastContainer.appendChild(toast);
-    
-    setTimeout(() => {
-        toast.style.opacity = '0';
-        setTimeout(() => toast.remove(), 300);
-    }, 3000);
+// Show Toast
+function showToast(m, t = 'success') {
+    const c = document.getElementById('toastContainer');
+    const e = document.createElement('div');
+    e.className = `toast ${t}`;
+    e.innerHTML = `<i class="fas fa-${t === 'success' ? 'check-circle' : 'exclamation-circle'}"></i><span>${m}</span>`;
+    c.appendChild(e);
+    setTimeout(() => { e.style.opacity = '0'; setTimeout(() => e.remove(), 300); }, 3000);
 }
