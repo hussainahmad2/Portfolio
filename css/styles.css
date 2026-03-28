@@ -744,19 +744,20 @@ body.light-theme .navbar {
 }
 
 .code-editor {
-    background: var(--surface);
+    background: #0f111a;
     border: 1px solid var(--border);
     border-radius: var(--radius-lg);
-    overflow: hidden;
-    box-shadow: var(--shadow-xl);
+    overflow: visible;
+    position: relative;
+    z-index: 1;
 }
 
 .code-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem;
-    background: var(--surface-light);
+    padding: 0.75rem 1rem;
+    background: #1a1c25;
     border-bottom: 1px solid var(--border);
 }
 
@@ -797,14 +798,15 @@ body.light-theme .navbar {
 .code-content .variable { color: #aa96da; }
 
 .about-text h3 {
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
+    text-shadow: none;
 }
 
 .about-highlights {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 1.5rem;
-    margin: 2rem 0;
+    gap: 1.25rem;
+    margin: 1.5rem 0;
 }
 
 .highlight-item {
@@ -831,8 +833,14 @@ body.light-theme .navbar {
 
 .about-cta {
     display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-top: 2rem;
+    align-items: center;
+}
+
+.btn-lg {
+    padding: 1rem 2.5rem;
+    font-size: 1.1rem;
 }
 
 /* Skills Section */
@@ -961,7 +969,7 @@ body.light-theme .navbar {
 .timeline-item {
     position: relative;
     width: 50%;
-    padding: 2rem;
+    padding: 1rem;
 }
 
 .timeline-item:nth-child(odd) {
@@ -976,11 +984,11 @@ body.light-theme .navbar {
 
 .timeline-dot {
     position: absolute;
-    top: 2rem;
-    width: 20px;
-    height: 20px;
+    top: 1.5rem;
+    width: 16px;
+    height: 16px;
     background: var(--primary);
-    border: 4px solid var(--bg-primary);
+    border: 3px solid var(--bg-primary);
     border-radius: var(--radius-full);
     z-index: 1;
 }
@@ -996,8 +1004,8 @@ body.light-theme .navbar {
 .timeline-content {
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
-    padding: 2rem;
+    border-radius: var(--radius-md);
+    padding: 1.25rem;
     position: relative;
     transition: all var(--transition-base);
 }
@@ -1039,13 +1047,15 @@ body.light-theme .navbar {
 }
 
 .timeline-content h3 {
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.25rem;
+    font-size: 1.1rem;
 }
 
 .timeline-content h4 {
     color: var(--text-secondary);
     font-weight: 500;
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem;
+    font-size: 0.9rem;
 }
 
 .timeline-content ul {
@@ -1426,45 +1436,48 @@ body.light-theme .navbar {
     transform: translateY(-3px);
 }
 
-/* Contact Form */
+/* Contact Form Cleanup - NO SHINE / NO SHADOW */
 .contact-form {
-    background: var(--surface);
+    background: #121212;
     border: 1px solid var(--border);
-    border-radius: var(--radius-xl);
-    padding: 2.5rem;
-    box-shadow: var(--shadow-xl);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    box-shadow: none !important; /* Force remove shine */
 }
 
 .form-group {
     position: relative;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
 }
 
 .form-control {
     width: 100%;
-    padding: 1rem;
-    background: var(--bg-primary);
-    border: 2px solid var(--border);
-    border-radius: var(--radius-md);
+    padding: 0.875rem;
+    background: #080808;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
     color: var(--text-primary);
-    font-size: 1rem;
-    transition: all var(--transition-base);
+    font-size: 0.95rem;
+    transition: none; /* Removed transition to fix ghosting */
+    box-shadow: none !important;
 }
 
 .form-control:focus {
     outline: none;
     border-color: var(--primary);
-    background: var(--surface-light);
+    background: #0f0f0f;
+    box-shadow: none !important;
 }
 
 .form-control:focus + label,
-.form-control:not(:placeholder-shown) + label {
+.form-control:valid + label {
     top: -10px;
     left: 10px;
     font-size: 0.75rem;
-    background: var(--surface);
+    background: #121212;
     padding: 0 0.5rem;
     color: var(--primary);
+    text-shadow: none;
 }
 
 .form-group label {
@@ -1472,8 +1485,9 @@ body.light-theme .navbar {
     top: 1rem;
     left: 1rem;
     color: var(--text-secondary);
-    transition: all var(--transition-base);
+    transition: top 0.2s ease, font-size 0.2s ease;
     pointer-events: none;
+    text-shadow: none;
 }
 
 textarea.form-control {
